@@ -1,0 +1,433 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 72.2% 50.6%;
+    --primary-foreground: 0 85.7% 97.3%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 72.2% 50.6%;
+    --radius: 0.5rem;
+    --brand: 27 96% 61%;
+    --brand-foreground: 31 97% 72%;
+  }
+ 
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 72.2% 50.6%;
+    --primary-foreground: 0 85.7% 97.3%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 72.2% 50.6%;
+    --brand: 31 97% 72%;
+    --brand-foreground: 27 96% 61%
+  }
+}
+
+body {
+  @apply bg-oritech-bg text-white font-poppins font-light;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  user-select: text;
+  /* Add top padding to prevent content from being covered by the fixed header */
+  padding-top: 80px;
+}
+
+.user-select-text {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+spline-viewer {
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed !important;
+  top: -3% !important; /* Moved 3% upwards */
+  left: 0 !important;
+  pointer-events: auto !important;
+  z-index: 5 !important;
+}
+
+.typewriter-container {
+  position: relative;
+  z-index: 10;
+}
+
+.section-padding {
+  @apply py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+}
+
+.pt-screen {
+  padding-top: 100vh;
+}
+
+.service-card {
+  @apply bg-oritech-gray p-6 rounded-lg transition-all duration-300 hover:translate-y-[-10px];
+}
+
+.team-card {
+  @apply bg-oritech-gray p-6 rounded-lg overflow-hidden relative;
+}
+
+.team-card::before {
+  content: '';
+  @apply absolute top-0 left-0 w-1 h-full bg-oritech-red;
+}
+
+.contact-input {
+  @apply w-full px-4 py-3 bg-oritech-gray border-0 rounded-md focus:ring-2 focus:ring-oritech-red focus:outline-none text-white;
+}
+
+.animation-visible {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+html {
+  scroll-behavior: smooth !important;
+}
+
+/* Enhanced smooth scrolling */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth !important;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ce0005;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a30004;
+}
+
+/* Ensure content doesn't block mouse events from reaching Spline */
+.spline-container {
+  pointer-events: none;
+}
+
+/* But allow interaction with actual content elements */
+.content-container * {
+  pointer-events: auto;
+}
+
+/* Animation for gradient background fallback */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Force scroll to work even when browser might prevent it */
+html, body {
+  overscroll-behavior-y: none;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Hardware acceleration for smoother animations */
+.hw-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Hero section with green wave background */
+.hero-section {
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(125deg, rgba(206,0,5,0.1) 0%, rgba(206,0,5,0.2) 100%);
+  z-index: 1;
+}
+
+.hero-wave {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1000 1000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,1000 C400,800 600,900 1000,1000 L1000,0 L0,0 Z' fill='%23ce0005' opacity='0.2'/%3E%3C/svg%3E");
+  background-size: cover;
+  z-index: 0;
+  animation: wave-animation 20s infinite alternate ease-in-out;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(1deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Font weight for all Poppins text */
+.font-poppins {
+  font-weight: 300;
+}
+
+.font-poppins.font-bold {
+  font-weight: 600;
+}
+
+.font-poppins.font-semibold {
+  font-weight: 500;
+}
+
+.font-poppins.font-medium {
+  font-weight: 400;
+}
+
+/* Calendar component styling */
+.calendar-container {
+  width: 100%;
+  height: 100%;
+}
+
+.calendar-container iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Extensions for the requested animations */
+@layer utilities {
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+  .delay-700 {
+    animation-delay: 700ms;
+  }
+  
+  .fade-top-lg {
+    mask-image: linear-gradient(to bottom, 
+      transparent, 
+      rgba(0, 0, 0, 1) 8rem
+    );
+  }
+
+  .animate-in {
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes fade-in-up {
+  0% { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Fixed header styles to ensure it stays at the top and overrides all content */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: rgba(26, 26, 26, 0.95);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+/* Adjust content to account for fixed header */
+.content-container {
+  margin-top: 60px; /* Add space for the fixed header */
+}
+
+/* Ensure all text elements are selectable */
+p, h1, h2, h3, h4, h5, h6, span, div, button, a {
+  user-select: text !important;
+}
+
+/* Make sure our navbar stays visible */
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: auto;
+  transform: translateZ(0); /* Hardware acceleration for images */
+}
+
+/* Improve animation performance */
+.transition-transform,
+.transition-opacity,
+.transition-all {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Fix for logo carousel images */
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Add additional spacing below fixed header */
+main {
+  padding-top: 1rem;
+}
+
+/* Ensure navigation menu content stays on top */
+.navigation-menu-content {
+  z-index: 10000;
+}
+
+/* Mobile-specific adjustments for Services section button */
+@media (max-width: 768px) {
+  /* Adjust button position on mobile */
+  #services .mt-[-5rem] {
+    margin-top: 1rem !important; /* Override negative margin on mobile */
+  }
+  
+  /* Ensure proper vertical spacing after the Feature grid on mobile */
+  #services .feature-grid + div {
+    margin-top: 2rem;
+  }
+  
+  .fixed-header {
+    padding: 0.5rem 1rem;
+  }
+  
+  body {
+    padding-top: 70px;
+  }
+}
+
+/* Enhanced touch interactions for mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  /* Improve touch target sizes */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Ensure smooth animations on lower-end devices */
+  .transition-all {
+    transition-duration: 0.2s;
+  }
+}
